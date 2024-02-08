@@ -8,7 +8,7 @@ export default function ChatLinks() {
     return (
         <div className="h-full mt-1">
             <ul className="px-[8px] ">
-                {filteredList.map((props) => <ChatLink {...props}/>)}
+                {filteredList.map((props) => <ChatLink key='' {...props}/>)}
             </ul>
         </div>
     );
