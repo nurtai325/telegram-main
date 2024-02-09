@@ -3,7 +3,6 @@ import { SlMagnifier } from "react-icons/sl";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useStore } from "../lib/store/store";
-import { chatLinkProps } from "../lib/chatData";
 
 export default function Searchbar(props) {
     const [value, setValue] = useState('');
@@ -18,14 +17,14 @@ export default function Searchbar(props) {
             setFocus(true);
           }
         }, [use]);
-      useEffect(() => {
-        if(value.length === 0) {
-          setFilteredList(chatLinkProps);
-        } else {
-          const list = chatLinkProps.filter(item => item.chat.toLowerCase().includes(value.toLowerCase()));
-          setFilteredList(list);
-        };
-      }, [value]);
+      // useEffect(() => {
+      //   if(value.length === 0) {
+      //     setFilteredList(chatLinkProps);
+      //   } else {
+      //     const list = chatLinkProps.filter(item => item.chat.toLowerCase().includes(value.toLowerCase()));
+      //     setFilteredList(list);
+      //   };
+      // }, [value]);
     const handle = (event) => {
         setValue(event.target.value);
         

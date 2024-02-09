@@ -10,15 +10,17 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
+    const setUsername = useStore((state) => state.setUsername);
     const logIn = useStore((state) => state.logIn);
     const route = useRouter();
     const handle = async (e) => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/login', {'email': email, 'password': password})
         .then(function (response) {
-            const {log} = response.data;
+            const {log, username} = response.data;
             console.log(log);
             if(log){
+                setUsername(username);
                 logIn();
                 route.push('/chat');
             } else {
@@ -35,25 +37,25 @@ const Login = () => {
     <div className='bg-white flex justify-center items-center h-screen w-screen'>
         <div className="flex items-center justify-center bg-gray-100">
       <div className="bg-white p-12 rounded-lg shadow-2xl w-96">
-        <h1 className="text-3xl font-bold mb-8">Login</h1>
+        <h1 className="text-3xl text-black font-bold mb-8">Login</h1>
         <form onSubmit={handle}>
           <label className="block mb-6">
-            <p>Email</p>
+            <p className='text-black'>Email</p>
             <input
               type="tel"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border p-3 rounded mt-1"
+              className="text-black w-full className='text-black' border p-3 rounded mt-1"
               required
             />
           </label>
           <label className='mb-6 block]'>
-            <p>Password</p>
+            <p className='text-black'>Password</p>
           <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border p-3 rounded mt-1"
+              className="text-black w-full border p-3 rounded mt-1"
               required
             />
           </label>

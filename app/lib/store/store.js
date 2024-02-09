@@ -1,9 +1,15 @@
 import { create } from 'zustand';
-import { chatLinkProps } from '../chatData';
 
 export const useStore = create((set) => ({
-  logged: false,
+  logged: true,
   logIn: () => set((state) => ({ logged: true })),
-  filteredList: chatLinkProps,
-  setFilteredList: (list) => set((state) => ({ filteredList: list})),
+  loading: true,
+  setLoading: () => set((state) => ({ loading: false })),
+  username: 'Nurtai',
+  setUsername: (some) => set((state) => ({ globalEmail: some })),
+  chats: [],
+  setChats: (some) => set((state) => ({chats: some})),
+  messages: {},
+  setMessages: (some) => set((state) => ({messages: some})),
+
 }))

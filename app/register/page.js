@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
     const [error, setError] = useState(false);
     const [confirm, setConfirm] = useState('');
     const [waiting, setWaiting] = useState(false);
@@ -36,13 +37,18 @@ const Login = () => {
     }
     const handle2 = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/confirm', {'email': email, 'password': password, 'code': confirm, 'user': count})
+        axios.post('http://localhost:8000/api/confirm', {
+            'email': email, 
+            'password': password, 
+            'code': confirm, 
+            'user': count, 
+            'username': username
+        })
         .then(function (response) {
             const {log} = response.data;
             console.log(log);
             if(log){
-                logIn();
-                route.push('/chat');
+                route.push('/login');
             } else {
               setError(true);
             }
@@ -56,38 +62,47 @@ const Login = () => {
     <div className='bg-white flex justify-center items-center h-screen w-screen'>
         <div className="flex items-center justify-center bg-gray-100">
       <div className="bg-white p-12 rounded-lg shadow-2xl w-96">
-        <h1 className="text-3xl font-bold mb-8">Register</h1>
+        <h1 className="text-black text-3xl font-bold mb-8">Register</h1>
         <form onSubmit={waiting ? handle2 : handle}>
           <label className="block mb-6">
-            <p>Email</p>
+            <p className='text-black'>Email</p>
             <input
               type="tel"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border p-3 rounded mt-1"
+              className="text-black w-full border p-3 rounded mt-1"
               required
             />
           </label>
           {waiting && <> 
-          
             <label className='mb-6 block]'>
-                <p className='mb-3 font-bold'>We sent confirmation code to your email</p>
-                <p>Password</p>
+                <p className='text-black'>Username</p>
             <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full border p-3 rounded mt-1"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="text-black w-full border p-3 rounded mt-1"
                 required
                 />
             </label>
             <label className='mb-6 block]'>
+                <p className='mb-3 font-bold text-black'>We sent confirmation code to your email</p>
+                <p className='text-black'>Password</p>
+            <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="text-black w-full border p-3 rounded mt-1"
+                required
+                />
+            </label>
+            <label className='text-black mb-6 block]'>
                 <p>Confirmation code</p>
             <input
                 type="text"
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
-                className="w-full border p-3 rounded mt-1"
+                className="text-black w-full border p-3 rounded mt-1"
                 required
                 />
             </label>

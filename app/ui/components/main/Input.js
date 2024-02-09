@@ -20,18 +20,18 @@ function Input() {
     <div className="relative z-10 bottom-23 w-[728px] h-[76px] px-[16px] flex">
       <div className="h-[56px] w-[632px]  bg-[#212121] rounded-[20px] flex select-none">
         <div className="h-[56px] w-[50px] rounded-[20px]"></div>
-        <input type="text" className="w-[520px] h-[56px] bg-[#212121] shadow-none transition-none" 
+        <input type="text" className="w-[520px] h-[56px] bg-[#212121] shadow-none transition-none outline-none" 
         value={message}
         onChange={handleChange}
         placeholder="Message"/> 
         <div></div>
 
       </div>
-      <div className="w-[56px] h-[56px]  rounded-[56px] bg-[#212121] absolute right-0 flex items-center justify-center ml-[10px]"
+      <button className="w-[56px] h-[56px]  rounded-[56px] bg-[#212121] absolute right-0 flex items-center justify-center ml-[10px]"
         onClick={sendMess}
       >
         <IoSend className="w-[24px] h-[24px] "/>
-      </div>
+      </button>
     </div>
   );
 }

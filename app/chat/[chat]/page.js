@@ -2,7 +2,6 @@
 import Side from "../../ui/Side";
 import Main from "../../ui/Main";
 import { useStore } from "../../lib/store/store";
-import Login from "/app/ui/Login";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -11,6 +10,8 @@ export default function Home() {
     const route = useRouter();
     route.push('/');
   }
+
+
   return (
     <div className="flex flex-row">
         <Side />
