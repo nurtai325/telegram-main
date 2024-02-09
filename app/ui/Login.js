@@ -8,6 +8,7 @@ import { useStore } from '../lib/store/store';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(false);
     const logIn = useStore((state) => state.logIn);
     const handle = async (e) => {
         e.preventDefault();
@@ -17,10 +18,13 @@ const Login = () => {
             console.log(log);
             if(log){
                 logIn();
+            } else {
+              setError(true);
             }
         })
         .catch(function (err) {
             console.log(err)
+            setError(true);
         })
     }
   return (
@@ -49,6 +53,10 @@ const Login = () => {
               required
             />
           </label>
+          <Link href={'/Register'} className='text-blue-500'>Register here</Link>
+          {error && <div className='text-red-600'>
+            Email or password is incorrect
+          </div>}
           <button
             type="submit"
             className="bg-blue-500 text-white p-3 rounded hover:bg-blue-700"
