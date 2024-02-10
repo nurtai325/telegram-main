@@ -12,26 +12,31 @@ const Login = () => {
     const [error, setError] = useState(false);
     const logIn = useStore((state) => state.logIn);
     const setUsername = useStore((state) => state.setUsername);
+
+    //create an object that have message time userName user_name
     const route = useRouter();
+
+
+
     const handle = async (e) => {
-        e.preventDefault();
-        axios.post('http://localhost:8000/api/login', {'email': email, 'password': password})
-        .then(function (response) {
-            const {log, username} = response.data;
-            console.log(log);
-            if(log){
-                setUsername(username);
-                logIn();
-                route.push('/chat');
-            } else {
-              setError(true);
-            }
-        })
-        .catch(function (err) {
-            console.log(err)
+      e.preventDefault();
+      axios.post('http://localhost:8000/api/login', {'email': email, 'password': password})
+      .then(function (response) {
+          const {log, username} = response.data;
+          console.log(log);
+          if(log){
+              setUsername(username);
+              logIn();
+              route.push('/chat');
+          } else {
             setError(true);
-        })
-    }
+          }
+      })
+      .catch(function (err) {
+          console.log(err)
+          setError(true);
+      })
+  }
 
   return (
     <div className='bg-white flex justify-center items-center h-screen w-screen'>

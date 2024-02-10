@@ -3,12 +3,24 @@ import React, { use, useState } from "react";
 import { IoSend } from "react-icons/io5";
 import { useCounterStore } from "../store";
 import { useMessages } from "@/app/lib/store/store";
-
+import { useStore } from "@/app/lib/store/store";
+import axios from "axios";
 
 function Input() {
   // const [inputValue, setInputValue] = useState("");
   const { message, setText } = useCounterStore();
+  const secondUserName = useStore((state) => state.secondUserName);
   const addingMessage = useMessages((state) => state.addingMessage);
+  const chats = useStore((state) => state.chats);
+  let chat_id = 0;
+
+  chats.map((el, index) => {
+    if (el.user1 == secondUserName || el.user2 == secondUserName) {
+      chat_id = index;
+      console.log("chat_ic" + chat_id)
+      return;
+    }
+  });
   
   const clearInput = () => {
     setText('');
@@ -19,12 +31,28 @@ function Input() {
     setText(elem.target.value);
   }
 
+
+  const sendMessage = async (time) => {
+    axios.post('http://localhost:8000/api/send', {"message": message, "time": time, "chat_id": chat_id})
+        .then(function (response) {
+            const {insert} = response.data;
+            console.log(insert);
+            
+        })
+        .catch(function (err) {
+            console.log(err)
+    })
+  }
+  
+
   const sendMess = () => {
     if(message !== "") {
       let date = new Date();
       const data = date.getHours() + ":" + date.getMinutes() + ":";
-      addingMessage("AlmasChat",[message, data])
+      addingMessage({text: message, time: data})
       clearInput();
+      
+      sendMessage(data);
     }
   }
 
@@ -32,8 +60,10 @@ function Input() {
     if(e.key == "Enter" && message !== "") {
       let date = new Date();
       const data = date.getHours() + ":" + date.getMinutes() + ":";
-      addingMessage("AlmasChat",[message, data])
+      addingMessage({text: message, time: data})
       clearInput('');
+
+      sendMessage(data);
     }
   }
 
