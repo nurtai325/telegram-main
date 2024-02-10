@@ -10,7 +10,7 @@ export default function Home() {
   const logged = useStore((state) => state.logged);
   if(!logged) {
     const route = useRouter();
-    route.push('/');
+    route.push('/login');
   }
   const username = useStore((state) => state.username);
   const setChats = useStore((state) => state.setChats);
@@ -29,7 +29,7 @@ export default function Home() {
         console.log(err)
     })
 
-    axios.post('http://localhost:8000/api/messages', {'chat_id': 1})
+    axios.post('http://localhost:8000/api/messages', {'chat': 'Root'})
     .then(function (response) {
         const {messages} = response.data;
         console.log(messages);
