@@ -31,15 +31,7 @@ export default function Home() {
         console.log(err)
     })
 
-    axios.post('http://localhost:8000/api/messages', {'chat': 'Root'})
-    .then(function (response) {
-        const {messages} = response.data;
-        console.log(messages);
-        setMessages(messages);
-    })
-    .catch(function (err) {
-        console.log(err)
-    })
+    
   }, []);
   
 
