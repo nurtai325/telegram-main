@@ -16,6 +16,7 @@ export default function Home() {
   const setChats = useStore((state) => state.setChats);
   const setLoading = useStore((state) => state.setLoading);
   const setMessages = useStore((state) => state.setMessages);
+  const setChatsStatic = useStore((state) => state.setChatsStatic)
   useEffect(() => {
     
     axios.post('http://localhost:8000/api/chats', {'username': username})
@@ -23,6 +24,7 @@ export default function Home() {
         const {chats} = response.data;
         console.log(chats);
         setChats(chats);
+        setChatsStatic(chats);
         setLoading(false);
     })
     .catch(function (err) {

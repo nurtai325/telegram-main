@@ -3,14 +3,17 @@ import { SlMagnifier } from "react-icons/sl";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useStore } from "../lib/store/store";
+import axios from "axios";
 
-export default function Searchbar(props) {
+export default function NewSearchbar(props) {
     const [value, setValue] = useState('');
     const [focus, setFocus] = useState(false);
     const [use, setUse] = useState(false);
     const setChats = useStore((state) => state.setChats);
     const chatsStatic = useStore((state) => state.chatsStatic);
     const username = useStore((state) =>  state.username);
+    const setSearchChats = useStore((state) =>  state.setSearchChats);
+    const searchChats = useStore((state) =>  state.searchChats);
 
         useEffect(() => {
           if (!use) {
@@ -19,15 +22,20 @@ export default function Searchbar(props) {
             setFocus(true);
           }
         }, [use]);
-      useEffect(() => {
-        if(value.length === 0) {
-          setChats([]);
-        } else {
+        useEffect(() => {
+            const fetchData = async () => {
+              try {
+                const response = await axios.post('http://localhost:8000/api/search', {'text': value});
+                const { chats } = response.data;
+                setSearchChats(chats);
+                console.log(searchChats);
+              } catch (err) {
+                console.log(err);
+              }
+            };
           
-          const list = chatsStatic.filter(item => item.user1 != username ? item.user1.toLowerCase().includes(value.toLowerCase()) : item.user2.toLowerCase().includes(value.toLowerCase()));
-          setChats(list);
-        };
-      }, [value]);
+            fetchData();
+          }, [value]);
     const handle = (event) => {
         setValue(event.target.value);
         

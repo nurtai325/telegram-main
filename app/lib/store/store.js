@@ -1,17 +1,20 @@
 import { create } from 'zustand';
 
 export const useStore = create((set) => ({
-  logged: true,
+  logged: false,
   logIn: () => set((state) => ({ logged: true })),
   loading: true,
   setLoading: () => set((state) => ({ loading: false })),
   username: 'Nurtai',
-  setUsername: (some) => set((state) => ({ globalEmail: some })),
+  setUsername: (some) => set((state) => ({ username: some })),
   chats: [],
   setChats: (some) => set((state) => ({chats: some})),
+  chatsStatic: [],
+  setChatsStatic: (some) => set((state) => ({chatsStatic: some})),
   messages: {},
   setMessages: (some) => set((state) => ({messages: some})),
-
+  searchChats: [],
+  setSearchChats: (some) => set((state) => ({searchChats: some})),
 }))
 
 
