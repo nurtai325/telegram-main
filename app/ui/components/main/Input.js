@@ -4,6 +4,7 @@ import { IoSend } from "react-icons/io5";
 import { useCounterStore } from "../store";
 import { useMessages } from "@/app/lib/store/store";
 
+
 function Input() {
   // const [inputValue, setInputValue] = useState("");
   const { message, setText } = useCounterStore();
