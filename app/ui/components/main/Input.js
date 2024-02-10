@@ -2,18 +2,38 @@
 import React, { use, useState } from "react";
 import { IoSend } from "react-icons/io5";
 import { useCounterStore } from "../store";
+import { useMessages } from "@/app/lib/store/store";
 
 function Input() {
-  const [inputValue, setInputValue] = useState("");
+  // const [inputValue, setInputValue] = useState("");
   const { message, setText } = useCounterStore();
+  const addingMessage = useMessages((state) => state.addingMessage);
+  
+  const clearInput = () => {
+    setText('');
+  }
 
   const handleChange = (elem) => {
-    setInputValue(elem.target.value);
+    // setInputValue(elem.target.value);
     setText(elem.target.value);
   }
 
   const sendMess = () => {
-    console.log(message);
+    if(message !== "") {
+      let date = new Date();
+      const data = date.getHours() + ":" + date.getMinutes() + ":";
+      addingMessage("AlmasChat",[message, data])
+      clearInput();
+    }
+  }
+
+  const sendMessKey = (e) => {
+    if(e.key == "Enter" && message !== "") {
+      let date = new Date();
+      const data = date.getHours() + ":" + date.getMinutes() + ":";
+      addingMessage("AlmasChat",[message, data])
+      clearInput('');
+    }
   }
 
   return(
@@ -23,6 +43,7 @@ function Input() {
         <input type="text" className="w-[520px] h-[56px] bg-[#212121] shadow-none transition-none outline-none" 
         value={message}
         onChange={handleChange}
+        onKeyDown={sendMessKey}
         placeholder="Message"/> 
         <div></div>
 

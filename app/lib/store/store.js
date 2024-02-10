@@ -13,3 +13,28 @@ export const useStore = create((set) => ({
   setMessages: (some) => set((state) => ({messages: some})),
 
 }))
+
+
+export const useMessages = create((set) => ({
+  messages: {
+    "AlmasChat": [
+      ["Hello world", "20:40"],
+      ["My name is Almas", "20:46"]
+    ]
+  },
+
+  // addingMessage: (chatName, message) => set((state) => ({
+  //   messages: [
+  //     ...state.messages,
+  //     [chatName]: [...state.messages[chatName], message],
+      
+  //     ]
+  // }))
+  addingMessage: (chatName, message) => set((state) => ({
+    messages: {
+      ...state.messages,
+      [chatName]: [...state.messages[chatName], message]
+    }
+  }))
+
+}));
