@@ -11,6 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
     const logIn = useStore((state) => state.logIn);
+    const setUsername = useStore((state) => state.setUsername);
     const route = useRouter();
     const handle = async (e) => {
         e.preventDefault();
