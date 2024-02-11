@@ -23,7 +23,8 @@ export default function Side(props) {
         console.log(error);
       });
     return (
-        <div className="flex flex-row"><div className="w-[420px] h-full border-t-black">
+        <div className="flex flex-row">
+          <div className="w-[420px] h-full border-t-black">
             <NewHeader/>
             <NewChats/>
             <div className="absolute hidden top-36 left-44 w-96 h-96 bg-secondary shadow-2xl z-40">
