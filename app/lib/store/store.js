@@ -5,7 +5,7 @@ export const useStore = create((set) => ({
   logIn: () => set((state) => ({ logged: true })),
   loading: true,
   setLoading: () => set((state) => ({ loading: false })),
-  username: 'Nurtai',
+  username: '',
   setUsername: (some) => set((state) => ({ username: some })),
   chats: [],
   setChats: (some) => set((state) => ({chats: some})),
@@ -14,16 +14,14 @@ export const useStore = create((set) => ({
   setChatsStatic: (some) => set((state) => ({chatsStatic: some})),
   searchChats: [],
   setSearchChats: (some) => set((state) => ({searchChats: some})),
+  newChatsStatic: [],
+  setNewChatsStatic: (some) => set((state) => ({newChatsStatic: some})),
 
-  messages: [
-    {text: "Hello world", time:"20:40"},
-    {text: "My name is Almas", time:"20:46"}
-  ],
-  setMessages: (some) => set((state) => ({messages: some})),
-  searchChats: [],
-  setSearchChats: (some) => set((state) => ({searchChats: some})),
   secondUserName: '',
-  setSecondUserName: (some) => set((state) => ({secondUserName: some}))
+  setSecondUserName: (some) => set((state) => ({secondUserName: some})),
+
+  chat_id: 0,
+  setChat_id: (some) => set((state) => ({chat_id: some})),
 
 }))
 
@@ -33,7 +31,7 @@ export const useMessages = create((set) => ({
       
     ],
 
-    
+  setMessages: (some) => set((state) => ({messages: some})),    
   // addingMessage: (chatName, message) => set((state) => ({
   //   messages: [
   //     ...state.messages,

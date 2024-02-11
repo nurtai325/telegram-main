@@ -6,18 +6,19 @@ import { useMessages } from "@/app/lib/store/store";
 import { useStore } from "@/app/lib/store/store";
 import axios from "axios";
 
-function Input() {
+function Input(props) {
   // const [inputValue, setInputValue] = useState("");
+  const username = useStore((state) => state.username)
   const { message, setText } = useCounterStore();
   const secondUserName = useStore((state) => state.secondUserName);
   const addingMessage = useMessages((state) => state.addingMessage);
   const chats = useStore((state) => state.chats);
-  let chat_id = 0;
-
-  chats.map((el, index) => {
+  const chat_id = useStore((state) => state.chat_id);
+  const chatsStatic = useStore((state) => state.chatsStatic);
+  let here;
+  chatsStatic.forEach((el) => {
     if (el.user1 == secondUserName || el.user2 == secondUserName) {
-      chat_id = index;
-      console.log("chat_ic" + chat_id)
+      here = el.chat_id;
       return;
     }
   });
@@ -33,7 +34,7 @@ function Input() {
 
 
   const sendMessage = async (time) => {
-    axios.post('http://localhost:8000/api/send', {"message": message, "time": time, "chat_id": chat_id})
+    axios.post('http://localhost:8000/api/send', {"message": message, "time": time, "chat_id": here, 'sender': username})
         .then(function (response) {
             const {insert} = response.data;
             console.log(insert);
@@ -49,7 +50,7 @@ function Input() {
     if(message !== "") {
       let date = new Date();
       const data = date.getHours() + ":" + date.getMinutes() + ":";
-      addingMessage({text: message, time: data})
+      addingMessage({"message": message, "time": data, "chat_id": here, 'sender': username})
       clearInput();
       
       sendMessage(data);
@@ -60,7 +61,7 @@ function Input() {
     if(e.key == "Enter" && message !== "") {
       let date = new Date();
       const data = date.getHours() + ":" + date.getMinutes() + ":";
-      addingMessage({text: message, time: data})
+      addingMessage({"message": message, "time": data, "chat_id": here, 'sender': username})
       clearInput('');
 
       sendMessage(data);

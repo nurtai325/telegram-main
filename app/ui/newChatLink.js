@@ -1,10 +1,24 @@
-import Link from 'next/link'
-import Image from 'next/legacy/image'
-import { usePathname } from 'next/navigation';
+'use client'
+import { useStore } from "../lib/store/store";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function NewChat(props) {
-    const handle = () => {
-
+    const username = useStore((state) => state.username);
+    const route = useRouter();
+    const handle = async () => {
+        try {
+            const response = await axios.post('http://localhost:8000/api/create', {'username': username, 'user_name': props.chat});
+            const { insert } = response.data;
+            if (insert) {
+                console.log('yes');
+                route.push(`/chat/${props.chat}`);
+            } else {
+                alert('Failed to create a chat. Try again');
+            }
+        } catch (err) {
+            console.log(err);
+        }
     }
     return (
         <>

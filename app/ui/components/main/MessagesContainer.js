@@ -1,17 +1,16 @@
 import DisplayComponent from "./Message";
 import { useMessages } from "@/app/lib/store/store";
+import { useStore } from '@/app/lib/store/store';
 
 
 function MessagesContainer() {
   const messages = useMessages((state) => state.messages);
-
-
-
+  const username = useStore((state) => state.username);
   return(
-    <div className="w-full h-screen flex justify-center overflow-y-auto">
-      <div className="w-[694px] max-w-[694px] h-[full]  flex flex-col-reverse overflow-y-scroll">
+    <div className="w-full h-screen flex justify-center overflow-y-auto p-4 px-64">
+      <div className="w-full h-[full]  flex flex-col-reverse overflow-y-scroll">
       {messages.slice().reverse().map((message, index) => (
-          <DisplayComponent key={index} text={message.text} time={message.time } />
+          <DisplayComponent key={index} text={message.message} time={message.time} own={username === message.sender ? true : false} />
         ))}
 
 

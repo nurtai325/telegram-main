@@ -10,7 +10,7 @@ export default function NewSearchbar(props) {
     const [focus, setFocus] = useState(false);
     const [use, setUse] = useState(false);
     const setChats = useStore((state) => state.setChats);
-    const chatsStatic = useStore((state) => state.chatsStatic);
+    const newChatsStatic = useStore((state) => state.newChatsStatic);
     const username = useStore((state) =>  state.username);
     const setSearchChats = useStore((state) =>  state.setSearchChats);
     const searchChats = useStore((state) =>  state.searchChats);
@@ -23,18 +23,12 @@ export default function NewSearchbar(props) {
           }
         }, [use]);
         useEffect(() => {
-            const fetchData = async () => {
-              try {
-                const response = await axios.post('http://localhost:8000/api/search', {'text': value});
-                const { chats } = response.data;
-                setSearchChats(chats);
-                console.log(searchChats);
-              } catch (err) {
-                console.log(err);
-              }
-            };
-          
-            fetchData();
+                if(value.length != 0) {
+                    const list = newChatsStatic.filter(item => item.username != username ? item.username.toLowerCase().includes(value.toLowerCase()) : null);
+                    setSearchChats(list);
+                } else {
+                    setSearchChats([]);
+                }
           }, [value]);
     const handle = (event) => {
         setValue(event.target.value);

@@ -9,11 +9,11 @@ export default function ChatLinks() {
 
     return (
         <div className="h-full mt-1">
-            <ul className="px-[8px] ">
+            <div className="px-[8px] ">
                 {loading ? <p className="text-white ml-3">Loading</p> : 
-                chats.map((props) => <ChatLink key='' 
+                chats.map((props) => <ChatLink
                 chat={props.user1 != username ? props.user1 : props.user2} />)}
-            </ul>
+            </div>
         </div>
     );
 };

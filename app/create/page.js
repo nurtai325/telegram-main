@@ -4,6 +4,7 @@ import Main from "../ui/Main";
 import { useStore } from "../lib/store/store";
 import { useRouter } from "next/navigation";
 import NewChats from "../ui/NewChats";
+import axios from "axios";
 
 export default function Side(props) {
     const logged = useStore((state) => state.logged)
@@ -11,6 +12,16 @@ export default function Side(props) {
         const route = useRouter();
         route.push('/login');
       }
+    const setNewChatsStatic = useStore((state) => state.setNewChatsStatic);
+    axios.post('http://localhost:8000/api/search', {'text': 'yes'})
+      .then(function (response) {
+        const {chats} = response.data;
+        setNewChatsStatic(chats);
+        console.log(chats);
+    })
+      .catch(function (error) {
+        console.log(error);
+      });
     return (
         <div className="flex flex-row"><div className="w-[420px] h-full border-t-black">
             <NewHeader/>

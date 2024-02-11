@@ -15,7 +15,6 @@ export default function Home() {
   const username = useStore((state) => state.username);
   const setChats = useStore((state) => state.setChats);
   const setLoading = useStore((state) => state.setLoading);
-  const setMessages = useStore((state) => state.setMessages);
   const setChatsStatic = useStore((state) => state.setChatsStatic)
   useEffect(() => {
     
