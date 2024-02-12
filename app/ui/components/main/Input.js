@@ -34,7 +34,7 @@ function Input(props) {
 
 
   const sendMessage = async (time) => {
-    axios.post('http://localhost:8000/api/send', {"message": message, "time": time, "chat_id": here, 'sender': username})
+    axios.post('http://13.53.200.204:8000/api/send', {"message": message, "time": time, "chat_id": here, 'sender': username})
         .then(function (response) {
             const {insert} = response.data;
             console.log(insert);

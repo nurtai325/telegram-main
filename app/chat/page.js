@@ -18,7 +18,7 @@ export default function Home() {
   const setChatsStatic = useStore((state) => state.setChatsStatic)
   useEffect(() => {
     
-    axios.post('http://localhost:8000/api/chats', {'username': username})
+    axios.post('http://13.53.200.204:8000/api/chats', {'username': username})
     .then(function (response) {
         const {chats} = response.data;
         console.log(chats);

@@ -8,7 +8,7 @@ export default function NewChat(props) {
     const route = useRouter();
     const handle = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/api/create', {'username': username, 'user_name': props.chat});
+            const response = await axios.post('http://13.53.200.204:8000/api/create', {'username': username, 'user_name': props.chat});
             const { insert } = response.data;
             if (insert) {
                 console.log('yes');

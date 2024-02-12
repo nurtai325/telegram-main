@@ -12,7 +12,7 @@ const Login = () => {
     const logIn = useStore((state) => state.logIn);
     const handle = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/login', {'email': email, 'password': password})
+        axios.post('http://13.53.200.204:8000/api/login', {'email': email, 'password': password})
         .then(function (response) {
             const {log} = response.data;
             console.log(log);

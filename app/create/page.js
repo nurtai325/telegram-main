@@ -13,7 +13,7 @@ export default function Side(props) {
         route.push('/login');
       }
     const setNewChatsStatic = useStore((state) => state.setNewChatsStatic);
-    axios.post('http://localhost:8000/api/search', {'text': 'yes'})
+    axios.post('http://13.53.200.204:8000/api/search', {'text': 'yes'})
       .then(function (response) {
         const {chats} = response.data;
         setNewChatsStatic(chats);
