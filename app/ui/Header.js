@@ -1,6 +1,5 @@
 import SideButton from "./SideButton"
 import Searchbar from "./Searchbar"
-import Side from "./Side"
 
 export default function Header(){
     return (

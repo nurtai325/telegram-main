@@ -4,7 +4,7 @@ import Main from "../../ui/Main";
 import { useMessages, useStore } from "../../lib/store/store";
 import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 

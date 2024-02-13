@@ -1,7 +1,5 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import { useStore } from "zustand";
-import Login from "./ui/Login";
 
 const roboto = Roboto({ subsets: ["latin"], weight: '300'});
 

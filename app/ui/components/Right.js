@@ -2,9 +2,7 @@
 import React from "react";
 import Main from "./main/Main";
 import "./global.css"
-import InfoMain from "./right/navbar/InfoMain";
 import { useCounterStore } from "./store";
-import { DiVim } from "react-icons/di";
 
 function Right() {
   const opened = useCounterStore((state) => state.opened);

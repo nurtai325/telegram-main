@@ -1,6 +1,3 @@
-import SideButton from "./SideButton"
-import Searchbar from "./Searchbar"
-import Side from "./Side"
 import NewSearchbar from "./NewSearchBar"
 import NewSideButton from "./NewSideButton"
 

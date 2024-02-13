@@ -3,17 +3,14 @@ import { SlMagnifier } from "react-icons/sl";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useStore } from "../lib/store/store";
-import axios from "axios";
 
 export default function NewSearchbar(props) {
     const [value, setValue] = useState('');
     const [focus, setFocus] = useState(false);
     const [use, setUse] = useState(false);
-    const setChats = useStore((state) => state.setChats);
     const newChatsStatic = useStore((state) => state.newChatsStatic);
     const username = useStore((state) =>  state.username);
     const setSearchChats = useStore((state) =>  state.setSearchChats);
-    const searchChats = useStore((state) =>  state.searchChats);
 
         useEffect(() => {
           if (!use) {

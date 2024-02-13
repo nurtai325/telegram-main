@@ -1,6 +1,4 @@
 'use client'
-import Link from 'next/link'
-import Image from 'next/legacy/image'
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 

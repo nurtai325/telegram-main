@@ -1,5 +1,4 @@
 import NewChatLink from "./newChatLink";
-import { useState } from "react";
 import { useStore } from "../lib/store/store";
 
 export default function NewChats() {
