@@ -19,7 +19,7 @@ const Login = () => {
 
     const handle = async (e) => {
         e.preventDefault();
-        axios.post('http://13.53.200.204:8000/api/register', {'email': email})
+        axios.post('http://51.20.185.25:8000/api/register', {'email': email})
         .then(function (response) {
             const {log, user} = response.data;
             setCount(user);
