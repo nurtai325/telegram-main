@@ -15,7 +15,7 @@ export default function Home() {
   const username = useStore((state) => state.username);
   const setChats = useStore((state) => state.setChats);
   const setLoading = useStore((state) => state.setLoading);
-  const setChatsStatic = useStore((state) => state.setChatsStatic)
+  const setChatsStatic = useStore((state) => state.setChatsStatic);
   useEffect(() => {
     
     axios.post('http://51.20.185.25:8000/api/chats', {'username': username})
